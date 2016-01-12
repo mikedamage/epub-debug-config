@@ -6,8 +6,8 @@ import browserify  from 'browserify';
 import babelify    from 'babelify';
 import source      from 'vinyl-source-stream';
 
-const production = !!$.util.env.production;
 const $          = plugins();
+const production = !!$.util.env.production;
 const copyFiles  = [
   'source/**/*',
   '!source/js/**/*.{js,jsx}',
