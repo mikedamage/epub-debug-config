@@ -60,5 +60,5 @@ gulp.task('styles', () => {
 gulp.task('copy', () => gulp.src(copyFiles).pipe(gulp.dest('build')));
 
 gulp.task('default', cb => {
-  runSequence('copy', [ 'images', 'scripts', 'styles' ], cb);
+  runSequence('copy', [ 'scripts', 'styles' ], cb);
 });
