@@ -5,6 +5,7 @@ import path        from 'path';
 import browserify  from 'browserify';
 import babelify    from 'babelify';
 import source      from 'vinyl-source-stream';
+import del         from 'del';
 
 const $          = plugins();
 const production = !!$.util.env.production;
@@ -14,36 +15,30 @@ const copyFiles  = [
   '!source/css/**/*.scss'
 ];
 
-gulp.task('scripts:main', () => {
-  let bundler = browserify({
-    entries: './source/js/main.js',
+const bundleJS = input => {
+  let output = path.basename(input);
+
+  return browserify({
+    entries: input,
     extensions: [ '.js', '.jsx' ],
     debug: !production
-  })
-  .transform(babelify);
-
-  return bundler.bundle()
-    .pipe(source('main.js'))
+  }).transform(babelify)
+    .bundle()
+    .pipe(source(output))
     .pipe(gulp.dest('build/js'));
-});
+};
 
-gulp.task('scripts:content', () => {
-  let bundler = browserify({
-    entries: './source/js/content.js',
-    extensions: [ '.js', '.jsx' ],
-    debug: !production
-  })
-  .transform(babelify);
-
-  return bundler.bundle()
-    .pipe(source('content.js'))
-    .pipe(gulp.dest('build/js'));
-});
+gulp.task('scripts:background', () => bundleJS('./source/js/background.js'));
+gulp.task('scripts:content', () => bundleJS('./source/js/content.js'));
+gulp.task('scripts:popup', () => bundleJS('./source/js/popup.jsx'));
 
 gulp.task('scripts', [
-  'scripts:main',
-  //'scripts:content'
+  'scripts:background',
+  //'scripts:content',
+  //'scripts:popup'
 ]);
+
+gulp.task('clean', () => del('build'));
 
 gulp.task('styles', () => {
   return gulp.src('./source/css/**/*.scss')
@@ -60,5 +55,5 @@ gulp.task('styles', () => {
 gulp.task('copy', () => gulp.src(copyFiles).pipe(gulp.dest('build')));
 
 gulp.task('default', cb => {
-  runSequence('copy', [ 'scripts', 'styles' ], cb);
+  runSequence('clean', 'copy', [ 'scripts', 'styles' ], cb);
 });
