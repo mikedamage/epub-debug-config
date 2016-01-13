@@ -11,6 +11,26 @@ const executeScript = filename => {
   return deferred.promise;
 };
 
+const getCurrentTab = () => {
+  let deferred = Q.defer();
+  chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+    deferred.resolve(tabs[0]);
+  });
+  return deferred.promise;
+};
+
+const sendMessage = (tabID, message) => {
+  let deferred = Q.defer();
+  chrome.tabs.sendMessage(tabId, message, response => deferred.resolve(response));
+  return deferred.promise;
+};
+
 executeScript('js/content.js').then(results => {
   console.log('injected content script');
+
+  getCurrentTab().then(tabID => {
+    sendMessage(tabID, { action: 'getLoggerStatus' }).then(loggerStatus => {
+      console.log(loggerStatus);
+    });
+  });
 });

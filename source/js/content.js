@@ -1,1 +1,18 @@
-console.log('foo');
+if (!window.hasEpubDebug) {
+  window.hasEpubDebug = true;
+
+  const actions = {
+    getLoggerStatus() {
+      return { components: [], level: 'debug' };
+    }
+  }
+
+  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (!actions.hasOwnProperty(request.action)) {
+      console.warn('Received invalid request from extension');
+      return;
+    }
+
+    sendResponse(actions[request.action].apply(this, request.args));
+  });
+}
