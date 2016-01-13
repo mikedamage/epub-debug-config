@@ -21,15 +21,16 @@ const getCurrentTab = () => {
 
 const sendMessage = (tabID, message) => {
   let deferred = Q.defer();
-  chrome.tabs.sendMessage(tabId, message, response => deferred.resolve(response));
+  chrome.tabs.sendMessage(tabID, message, response => deferred.resolve(response));
   return deferred.promise;
 };
 
 executeScript('js/content.js').then(results => {
   console.log('injected content script');
 
-  getCurrentTab().then(tabID => {
-    sendMessage(tabID, { action: 'getLoggerStatus' }).then(loggerStatus => {
+  getCurrentTab().then(tab => {
+    console.log('Current tab: %O', tab);
+    sendMessage(tab.id, { action: 'getLoggerStatus' }).then(loggerStatus => {
       console.log(loggerStatus);
     });
   });
