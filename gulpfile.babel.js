@@ -34,7 +34,7 @@ gulp.task('scripts:popup', () => bundleJS('./source/js/popup.jsx'));
 
 gulp.task('scripts', [
   'scripts:popup',
-  //'scripts:content',
+  'scripts:content'
 ]);
 
 gulp.task('clean', () => del('build'));
