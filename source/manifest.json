@@ -3,7 +3,6 @@
   "name": "ePublishing Debug Config",
   "version": "0.1.0",
   "author": "Mike Green <mgreen@epublishing.com>",
-  "default_locale": "en",
   "description": "Control panel for ePublishing's front-end debug logger",
   "icons": {
     "16": "images/debug-off-16.png",
@@ -11,11 +10,17 @@
     "38": "images/debug-off-38.png",
     "128": "images/debug-off-128.png"
   },
-  "page_action": {
-    "default_icon": "images/debug-off-38.png",
-    "default_title": "ePublishing Debug Config",
+  "browser_action": {
+    "default_icon": {
+      "19": "images/debug-off-19.png",
+      "38": "images/debug-off-38.png"
+    },
+    "default_title": "ePub Debug Config",
     "default_popup": "popup.html"
   },
-  "content_scripts": [],
-  "permissions": [ "http://*/", "https://*/" ]
+  "permissions": [
+    "activeTab",
+    "http://*/",
+    "https://*/"
+  ]
 }

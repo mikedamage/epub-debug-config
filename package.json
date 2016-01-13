@@ -6,6 +6,7 @@
   "author": "Mike Green <mgreen@epublishing.com>",
   "dependencies": {
     "lodash": "^3.10.1",
+    "q": "^1.4.1",
     "react": "^0.14.6",
     "react-dom": "^0.14.6"
   },

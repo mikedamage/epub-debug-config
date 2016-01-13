@@ -25,17 +25,16 @@ const bundleJS = input => {
   }).transform(babelify)
     .bundle()
     .pipe(source(output))
+    .pipe($.rename({ extname: '.js' }))
     .pipe(gulp.dest('build/js'));
 };
 
-gulp.task('scripts:background', () => bundleJS('./source/js/background.js'));
 gulp.task('scripts:content', () => bundleJS('./source/js/content.js'));
 gulp.task('scripts:popup', () => bundleJS('./source/js/popup.jsx'));
 
 gulp.task('scripts', [
-  'scripts:background',
+  'scripts:popup',
   //'scripts:content',
-  //'scripts:popup'
 ]);
 
 gulp.task('clean', () => del('build'));
