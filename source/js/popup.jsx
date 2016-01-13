@@ -1,7 +1,8 @@
-import _        from 'lodash';
-import Q        from 'q';
-import React    from 'react';
-import ReactDOM from 'react-dom';
+import _           from 'lodash';
+import Q           from 'q';
+import React       from 'react';
+import ReactDOM    from 'react-dom';
+import Application from './lib/application';
 
 const executeScript = filename => {
   let deferred = Q.defer();
@@ -32,6 +33,9 @@ executeScript('js/content.js').then(results => {
     console.log('Current tab: %O', tab);
     sendMessage(tab.id, { action: 'getLoggerStatus' }).then(loggerStatus => {
       console.log(loggerStatus);
+
+      ReactDOM.render(<Application status={loggerStatus} />, document.getElementById('app'));
     });
   });
 });
+
