@@ -28,14 +28,12 @@ const sendMessage = (tabID, message) => {
 
 executeScript('js/content.js').then(results => {
   console.log('injected content script');
-
-  getCurrentTab().then(tab => {
-    console.log('Current tab: %O', tab);
-    sendMessage(tab.id, { action: 'getLoggerStatus' }).then(loggerStatus => {
-      console.log(loggerStatus);
-
-      ReactDOM.render(<Application status={loggerStatus.data} />, document.getElementById('app'));
-    });
-  });
+  return getCurrentTab();
+}).then(tab => {
+  console.log('Current Tab: %O', tab);
+  return sendMessage(tab.id, { action: 'getLoggerStatus' });
+}).then(status => {
+  console.log(status);
+  ReactDOM.render(<Application status={status.data} />, document.getElementById('app'));
 });
 
