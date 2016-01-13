@@ -2,8 +2,9 @@ import _     from 'lodash';
 import React from 'react';
 
 class Application extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
     this.state = {
       loggerStatus: this.props.status
     };
@@ -12,16 +13,18 @@ class Application extends React.Component {
   render() {
     if (!this.state.loggerStatus) {
       return (
-        <div className="application">
-          <p>
-            <em>Logger instance not found</em>
-          </p>
-        </div>
+        <p>
+          <em>
+            Logger module not found in active tab
+          </em>
+        </p>
       );
     }
 
     return (
-      <div className="application"></div>
+      <div className="application">
+        <h2>Application</h2>
+      </div>
     );
   }
 }
