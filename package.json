@@ -5,6 +5,7 @@
   "description": "Control panel for front-end logging in ePublishing projects",
   "author": "Mike Green <mgreen@epublishing.com>",
   "dependencies": {
+    "domready": "^1.0.8",
     "lodash": "^3.10.1",
     "q": "^1.4.1",
     "react": "^0.14.6",

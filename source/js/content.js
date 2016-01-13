@@ -1,9 +1,28 @@
-if (!window.hasEpubDebug) {
-  window.hasEpubDebug = true;
+import domready from 'domready';
+
+domready(() => {
+  let win = window.window;
+
+  console.log(win);
+
+  if (win.hasEpubDebug) {
+    return;
+  }
+
+  win.hasEpubDebug = true;
 
   const actions = {
     getLoggerStatus() {
-      return { components: [], level: 'debug' };
+      console.log(win.logger);
+
+      if (!win.logger) {
+        return false;
+      }
+
+      return {
+        config: win.logger.getConfig(),
+        components: win.logger.componentNames
+      };
     }
   }
 
@@ -14,6 +33,8 @@ if (!window.hasEpubDebug) {
       return;
     }
 
-    sendResponse(actions[request.action].apply(this, request.args));
+    let args = request.args || [];
+
+    sendResponse(actions[request.action].apply(this, args));
   });
-}
+});
