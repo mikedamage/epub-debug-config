@@ -34,7 +34,7 @@ executeScript('js/content.js').then(results => {
     sendMessage(tab.id, { action: 'getLoggerStatus' }).then(loggerStatus => {
       console.log(loggerStatus);
 
-      ReactDOM.render(<Application status={loggerStatus} />, document.getElementById('app'));
+      ReactDOM.render(<Application status={loggerStatus.data} />, document.getElementById('app'));
     });
   });
 });

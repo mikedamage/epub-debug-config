@@ -1,40 +1,35 @@
-import domready from 'domready';
+import includes from 'lodash.includes';
 
-domready(() => {
-  let win = window.window;
+const storageKey = 'epublishing.logger';
+const actions    = {
+  getLoggerStatus() {
+    return JSON.parse(window.window.localStorage[storageKey]);
+  },
+  getLocalStorage(key) {
+    return window.window.localStorage[key];
+  },
+  enableComponent(name) {
+    let config = JSON.parse(window.window.localStorage[storageKey]);
 
-  console.log(win);
+    if (!includes(config.components, name)) {
+      return { status: 'error', message: 'invalid component name', data: null };
+    }
 
-  if (win.hasEpubDebug) {
+    config.active.push(name);
+    window.window.localStorage[storageKey] = JSON.stringify(config);
+
+    return { status: 'success', data: config };
+  }
+}
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  console.log(request);
+  if (!actions.hasOwnProperty(request.action)) {
+    console.warn('Received invalid request from extension');
     return;
   }
 
-  win.hasEpubDebug = true;
+  let args = request.args || [];
 
-  const actions = {
-    getLoggerStatus() {
-      console.log(win.logger);
-
-      if (!win.logger) {
-        return false;
-      }
-
-      return {
-        config: win.logger.getConfig(),
-        components: win.logger.componentNames
-      };
-    }
-  }
-
-  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    console.log(request);
-    if (!actions.hasOwnProperty(request.action)) {
-      console.warn('Received invalid request from extension');
-      return;
-    }
-
-    let args = request.args || [];
-
-    sendResponse(actions[request.action].apply(this, args));
-  });
+  sendResponse({ data: actions[request.action].apply(this, args) });
 });
