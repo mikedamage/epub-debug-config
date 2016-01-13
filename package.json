@@ -26,6 +26,7 @@
     "gulp-sass": "^2.1.1",
     "gulp-size": "^2.0.0",
     "gulp-util": "^3.0.7",
+    "gulp-zip": "^3.0.2",
     "lodash.includes": "^4.0.0",
     "run-sequence": "^1.1.5",
     "vinyl-source-stream": "^1.1.0"

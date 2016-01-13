@@ -6,6 +6,7 @@ import browserify  from 'browserify';
 import babelify    from 'babelify';
 import source      from 'vinyl-source-stream';
 import del         from 'del';
+import pkg         from './package';
 
 const $          = plugins();
 const production = !!$.util.env.production;
@@ -52,6 +53,14 @@ gulp.task('styles', () => {
 });
 
 gulp.task('copy', () => gulp.src(copyFiles).pipe(gulp.dest('build')));
+
+gulp.task('zip', () => {
+  return gulp.src('build/**/*')
+    .pipe($.rename(file => file.dirname = `epub-debug-logger/${file.dirname}`))
+    .pipe($.zip(`epub-debug-logger-${pkg.version}.zip`))
+    .pipe($.size({ title: 'Zip Archive' }))
+    .pipe(gulp.dest('dist'));
+});
 
 gulp.task('default', cb => {
   runSequence('clean', 'copy', [ 'scripts', 'styles' ], cb);
