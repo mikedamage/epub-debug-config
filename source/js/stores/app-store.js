@@ -2,9 +2,34 @@ import AppDispatcher    from '../dispatcher/app-dispatcher';
 import { ActionTypes }  from '../lib/constants';
 import { EventEmitter } from 'events';
 
+const CHANGE_EVENT = 'change';
+
 class AppStore extends EventEmitter {
   constructor() {
     super();
+    this.state = {};
+  }
+
+  emitChange() {
+    this.emit(CHANGE_EVENT);
+  }
+
+  addChangeListener(callback) {
+    this.on(CHANGE_EVENT, callback);
+  }
+
+  removeChangeListener(callback) {
+    this.removeListener(CHANGE_EVENT, callback);
+  }
+
+  getState() {
+    return this.state;
+  }
+
+  setState(state) {
+    this.state = state;
+    this.emitChange();
+    return this.state;
   }
 }
 
