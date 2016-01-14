@@ -1,5 +1,8 @@
-import _     from 'lodash';
-import React from 'react';
+import _             from 'lodash';
+import React         from 'react';
+import ComponentList from './lib/component-list';
+import LevelSelect   from './lib/level-select';
+import Tools         from './lib/tools';
 
 class Application extends React.Component {
   constructor(props) {
@@ -13,17 +16,22 @@ class Application extends React.Component {
   render() {
     if (!this.state.loggerStatus) {
       return (
-        <p>
-          <em>
-            Logger module not found in active tab
-          </em>
-        </p>
+        <div className="application">
+          <p className="error">
+            <em>
+              Logger module not found in active tab
+            </em>
+          </p>
+        </div>
       );
     }
 
     return (
       <div className="application">
         <h2>Application</h2>
+        <LevelSelect />
+        <ComponentList />
+        <Tools />
       </div>
     );
   }
