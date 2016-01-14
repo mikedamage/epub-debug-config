@@ -1,8 +1,8 @@
 import _             from 'lodash';
 import React         from 'react';
-import ComponentList from './lib/component-list';
-import LevelSelect   from './lib/level-select';
-import Tools         from './lib/tools';
+import ComponentList from './component-list';
+import LevelSelect   from './level-select';
+import Tools         from './tools';
 
 class Application extends React.Component {
   constructor(props) {

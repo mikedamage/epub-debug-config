@@ -2,7 +2,7 @@ import _           from 'lodash';
 import Q           from 'q';
 import React       from 'react';
 import ReactDOM    from 'react-dom';
-import Application from './lib/application';
+import Application from './components/application';
 
 const executeScript = filename => {
   let deferred = Q.defer();

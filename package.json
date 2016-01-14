@@ -6,6 +6,7 @@
   "author": "Mike Green <mgreen@epublishing.com>",
   "dependencies": {
     "domready": "^1.0.8",
+    "flux": "^2.1.1",
     "lodash": "^3.10.1",
     "q": "^1.4.1",
     "react": "^0.14.6",
