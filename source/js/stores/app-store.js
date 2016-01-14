@@ -34,7 +34,17 @@ class AppStore extends EventEmitter {
 }
 
 AppStore.dispatchToken = AppDispatcher.register(action => {
+  switch (action.type) {
+    case ActionTypes.TOGGLE_COMPONENT:
 
+      break;
+    case ActionTypes.SET_LEVEL:
+
+      break;
+    case ActionTypes.TOGGLE_AJAX:
+
+      break;
+  }
 });
 
 export default AppStore;
