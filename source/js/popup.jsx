@@ -3,35 +3,14 @@ import Q           from 'q';
 import React       from 'react';
 import ReactDOM    from 'react-dom';
 import Application from './components/application';
+import * as util   from './lib/utilities';
 
-const executeScript = filename => {
-  let deferred = Q.defer();
-  chrome.tabs.executeScript(null, { file: filename }, result => {
-    deferred.resolve(result);
-  });
-  return deferred.promise;
-};
-
-const getCurrentTab = () => {
-  let deferred = Q.defer();
-  chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-    deferred.resolve(tabs[0]);
-  });
-  return deferred.promise;
-};
-
-const sendMessage = (tabID, message) => {
-  let deferred = Q.defer();
-  chrome.tabs.sendMessage(tabID, message, response => deferred.resolve(response));
-  return deferred.promise;
-};
-
-executeScript('js/content.js').then(results => {
+util.executeScript('js/content.js').then(results => {
   console.log('injected content script');
-  return getCurrentTab();
+  return util.getCurrentTab();
 }).then(tab => {
   console.log('Current Tab: %O', tab);
-  return sendMessage(tab.id, { action: 'getLoggerStatus' });
+  return util.sendMessage(tab.id, { action: 'getLoggerStatus' });
 }).then(status => {
   console.log(status);
   ReactDOM.render(<Application status={status.data} />, document.getElementById('app'));
