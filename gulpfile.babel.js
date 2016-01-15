@@ -69,3 +69,9 @@ gulp.task('zip', () => {
 gulp.task('default', cb => {
   runSequence('clean', 'copy', [ 'scripts', 'styles' ], cb);
 });
+
+gulp.task('watch', () => {
+  gulp.watch('./source/**/*.{js,jsx}', [ 'scripts' ]);
+  gulp.watch(copyFiles, [ 'copy' ]);
+  gulp.watch('./source/css/**/*.scss', [ 'styles' ]);
+});
