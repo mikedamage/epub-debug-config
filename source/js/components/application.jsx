@@ -3,18 +3,20 @@ import React         from 'react';
 import ComponentList from './component-list';
 import LevelSelect   from './level-select';
 import Tools         from './tools';
+import ActionCreator from '../actions/action-creator';
+import AppStore      from '../stores/app-store';
 
 class Application extends React.Component {
   constructor(props) {
     super(props);
+  }
 
-    this.state = {
-      loggerStatus: this.props.status
-    };
+  componentDidMount() {
+    ActionCreator.getLoggerConfig();
   }
 
   render() {
-    if (!this.state.loggerStatus) {
+    if (!AppStore.getConfig()) {
       return (
         <div className="application">
           <p className="error">

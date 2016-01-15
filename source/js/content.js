@@ -2,7 +2,7 @@ import includes from 'lodash.includes';
 
 const storageKey = 'epublishing.logger';
 const actions    = {
-  getLoggerStatus() {
+  getLoggerConfig() {
     try {
       return JSON.parse(window.window.localStorage[storageKey]);
     } catch (err) {

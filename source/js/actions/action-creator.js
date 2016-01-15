@@ -5,11 +5,11 @@ import {ActionTypes} from '../lib/constants';
 const ActionCreator = {
   getLoggerConfig() {
     return util.getCurrentTab().then(tab => {
-      return sendMessage(tab.id, { action: 'getLoggerStatus' });
-    }).then(status => {
+      return sendMessage(tab.id, { action: 'getLoggerConfig' });
+    }).then(config => {
       Dispatcher.dispatch({
         type: ActionTypes.SET_STATE,
-        state: status
+        config: config
       });
 
       return status;

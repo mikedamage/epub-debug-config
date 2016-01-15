@@ -6,13 +6,8 @@ import Application from './components/application';
 import * as util   from './lib/utilities';
 
 util.executeScript('js/content.js').then(results => {
-  console.log('injected content script');
-  return util.getCurrentTab();
-}).then(tab => {
-  console.log('Current Tab: %O', tab);
-  return util.sendMessage(tab.id, { action: 'getLoggerStatus' });
-}).then(status => {
-  console.log(status);
-  ReactDOM.render(<Application status={status.data} />, document.getElementById('app'));
+  console.log('injected content script: %O', results);
+  return results;
+}).then(results => {
+  ReactDOM.render(<Application />, document.getElementById('app'));
 });
-
