@@ -2,6 +2,7 @@ import _             from 'lodash';
 import React         from 'react';
 import Toggle        from 'react-toggle';
 import ActionCreator from '../actions/action-creator';
+import AppStore      from '../stores/app-store';
 
 class ComponentList extends React.Component {
   constructor(props) {
@@ -13,14 +14,21 @@ class ComponentList extends React.Component {
   }
 
   componentDidMount() {
-    let config = AppStore.getConfig();
-    let toggles = {};
+    let changeCallback = () => {
+      console.debug('Component list: change callback');
 
-    _.forEach(config.components, comp => {
-      toggles[comp] = _.includes(config.active, comp);
-    });
+      let config = AppStore.getConfig();
+      let toggles = {};
 
-    this.setState({ components: toggles });
+      _.forEach(config.components, comp => {
+        toggles[comp] = _.includes(config.active, comp);
+      });
+
+      this.setState({ components: toggles });
+    };
+
+    changeCallback();
+    AppStore.addChangeListener(changeCallback);
   }
 
   handleChange(evt) {

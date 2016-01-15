@@ -12,10 +12,6 @@ const AppStore = _.assign({}, EventEmitter.prototype, {
     return _config;
   },
 
-  setConfig(obj) {
-    return _config = obj;
-  },
-
   emitChange() {
     this.emit(CHANGE_EVENT);
   },
@@ -31,7 +27,9 @@ const AppStore = _.assign({}, EventEmitter.prototype, {
   dispatchToken: AppDispatcher.register(action => {
     switch (action.type) {
       case ActionTypes.SET_STATE:
-        this.setConfig(action.config);
+        console.debug('setting store state: %O', action.config);
+        _config = action.config;
+        this.emitChange();
         break;
     }
 

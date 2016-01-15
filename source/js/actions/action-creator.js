@@ -1,15 +1,18 @@
-import Dispatcher    from '../dispatcher/app-dispatcher';
+import AppDispatcher from '../dispatcher/app-dispatcher';
 import * as util     from '../lib/utilities';
 import {ActionTypes} from '../lib/constants';
 
 const ActionCreator = {
   getLoggerConfig() {
     return util.getCurrentTab().then(tab => {
-      return sendMessage(tab.id, { action: 'getLoggerConfig' });
+      console.log('Current tab: %O', tab);
+      return util.sendMessage(tab.id, { action: 'getLoggerConfig' });
     }).then(config => {
-      Dispatcher.dispatch({
+      console.debug('Send config data to dispatcher: %O', config);
+
+      AppDispatcher.dispatch({
         type: ActionTypes.SET_STATE,
-        config: config
+        config: config.data
       });
 
       return status;
