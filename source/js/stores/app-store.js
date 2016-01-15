@@ -29,7 +29,7 @@ const AppStore = _.assign({}, EventEmitter.prototype, {
       case ActionTypes.SET_STATE:
         console.debug('setting store state: %O', action.config);
         _config = action.config;
-        this.emitChange();
+        AppStore.emitChange();
         break;
     }
 

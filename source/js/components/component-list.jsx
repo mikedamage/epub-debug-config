@@ -39,6 +39,7 @@ class ComponentList extends React.Component {
     let components = _.map(this.state.components, (comp, key) => {
       return (
         <div className="component-list__component">
+          <h2 class="section-title">Components</h2>
           <Toggle id={`component-${key}`} defaultChecked={comp} onChange={this.handleChange} />
           <label for={`component-${key}`}>{key}</label>
         </div>
