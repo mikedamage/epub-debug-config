@@ -1,2 +1,6 @@
 @import 'normalize.scss/normalize';
 @import 'partials/toggles';
+
+body {
+  min-width: 350px;
+}

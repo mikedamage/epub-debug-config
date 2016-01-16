@@ -32,16 +32,20 @@ class ComponentList extends React.Component {
   }
 
   handleChange(evt) {
-    console.log(evt);
+    console.debug('Component toggled: %O', evt.target);
   }
 
   render() {
     let components = _.map(this.state.components, (comp, key) => {
       return (
-        <div className="component-list__component">
-          <h2 class="section-title">Components</h2>
-          <Toggle id={`component-${key}`} defaultChecked={comp} onChange={this.handleChange} />
-          <label for={`component-${key}`}>{key}</label>
+        <div className="component-list__component" key={key}>
+          <h2 className="section-title">Components</h2>
+          <label htmlFor={`component-${key}`}>{key}</label>
+          <Toggle
+            id={`component-${key}`}
+            defaultChecked={comp}
+            onChange={this.handleChange}
+            name={key} />
         </div>
       );
     });
