@@ -18,9 +18,11 @@ const copyFiles  = [
 ];
 
 const bumpTask = type => {
-  return gulp.src('package.json')
-    .pipe($.bump({ type: type }))
-    .pipe(gulp.dest('./'));
+  return () => {
+    return gulp.src('package.json')
+      .pipe($.bump({ type: type }))
+      .pipe(gulp.dest('./'));
+  };
 };
 
 gulp.task('bump:patch', bumpTask('patch'));
