@@ -48,7 +48,7 @@ gulp.task('styles', () => {
   return gulp.src('./source/css/**/*.scss')
     .pipe($.sass({
       outputStyle: 'expanded',
-      includePath: [
+      includePaths: [
         'source/css',
         path.join(__dirname, 'node_modules')
       ]

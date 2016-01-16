@@ -23,6 +23,11 @@ const actions    = {
     window.window.localStorage[storageKey] = JSON.stringify(config);
 
     return { status: 'success', data: config };
+  },
+  setLoggerConfig(config) {
+    config = JSON.stringify(config);
+    window.window.localStorage[storageKey] = config;
+    return { status: 'success', data: config };
   }
 }
 
