@@ -33,6 +33,23 @@ const ActionCreator = {
 
       return config.data;
     })
+  },
+
+  toggleComponent(component, active) {
+    console.debug('Toggle component: %s %s', component, active);
+
+    return util.getCurrentTab().then(tab => {
+      return util.sendMessage(tab.id, { action: 'setComponentState', args: [ component, active ] });
+    }).then(config => {
+      console.debug('Send config data to dispatcher: %O', config);
+
+      AppDispatcher.dispatch({
+        type: ActionTypes.SET_STATE,
+        config: config.data
+      });
+
+      return config.data;
+    });
   }
 };
 

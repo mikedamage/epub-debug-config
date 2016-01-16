@@ -33,6 +33,7 @@ class ComponentList extends React.Component {
 
   handleChange(evt) {
     console.debug('Component toggled: %O', evt.target);
+    ActionCreator.toggleComponent(evt.target.name, evt.target.checked);
   }
 
   render() {
