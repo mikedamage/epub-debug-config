@@ -17,6 +17,16 @@ const copyFiles  = [
   '!source/css/**/*.scss'
 ];
 
+const bumpTask = type => {
+  return gulp.src('package.json')
+    .pipe($.bump({ type: type }))
+    .pipe(gulp.dest('./'));
+};
+
+gulp.task('bump:patch', bumpTask('patch'));
+gulp.task('bump:minor', bumpTask('minor'));
+gulp.task('bump:major', bumpTask('major'));
+
 const bundleJS = input => {
   let output = path.basename(input);
 
