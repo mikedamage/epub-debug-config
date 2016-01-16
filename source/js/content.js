@@ -40,16 +40,19 @@ const actions    = {
 
     if (active && !includes(config.active, component)) {
       config.active.push(component);
-      console.debug('Enabled component: %s', component);
+      console.debug('Enabled component: %s (%O)', component, config);
     } else if (!active && includes(config.active, component)) {
       let idx = config.active.indexOf(component);
 
       if (idx !== -1) {
-        config.active = config.active.splice(idx, 1);
-        saveConfig(config);
-        console.debug('Disabled component: %s', component);
+        config.active.splice(idx, 1);
+        console.debug('Disabled component: %s (%O)', component, config);
       }
     }
+
+    saveConfig(config);
+
+    return { status: 'success', data: config };
   },
 
   setLoggerConfig(config) {
