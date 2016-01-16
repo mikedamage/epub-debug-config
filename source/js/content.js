@@ -45,7 +45,7 @@ const actions    = {
       let idx = config.active.indexOf(component);
 
       if (idx !== -1) {
-        config.active = config.active.splice(index, 1);
+        config.active = config.active.splice(idx, 1);
         saveConfig(config);
         console.debug('Disabled component: %s', component);
       }
