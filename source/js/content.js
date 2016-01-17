@@ -55,6 +55,15 @@ const actions    = {
     return { status: 'success', data: config };
   },
 
+  setSeverityLevel(level) {
+    console.debug('Setting logger severity level to %s', level);
+    let config = getConfig();
+    config.level = level;
+    saveConfig(config);
+
+    return { status: 'success', data: config };
+  },
+
   setLoggerConfig(config) {
     config = JSON.stringify(config);
     window.window.localStorage[storageKey] = config;

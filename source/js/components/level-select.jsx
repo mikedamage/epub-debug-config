@@ -1,5 +1,6 @@
-import _     from 'lodash';
-import React from 'react';
+import _             from 'lodash';
+import React         from 'react';
+import ActionCreator from '../actions/action-creator';
 
 class LevelSelect extends React.Component {
   constructor(props) {
@@ -7,7 +8,8 @@ class LevelSelect extends React.Component {
   }
 
   handleChange(evt) {
-    console.log(evt);
+    let level = evt.target.value;
+    ActionCreator.setSeverityLevel(level);
   }
 
   render() {
@@ -26,10 +28,14 @@ class LevelSelect extends React.Component {
 
     return (
       <div className="level-select">
-        <select
-          className="level-select__input"
-          name="level"
-          onChange={this.handleChange}>{opts}</select>
+        <label htmlFor="level-select-input" className="level-select__label">Severity Level</label>
+        <div className="field">
+          <select
+            className="level-select__input"
+            id="level-select-input"
+            name="level"
+            onChange={this.handleChange}>{opts}</select>
+        </div>
       </div>
     );
   }

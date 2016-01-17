@@ -50,6 +50,23 @@ const ActionCreator = {
 
       return config.data;
     });
+  },
+
+  setSeverityLevel(level) {
+    console.log('Setting severity level to %s', level);
+
+    return util.getCurrentTab().then(tab => {
+      return util.sendMessage(tab.id, { action: 'setSeverityLevel', args: [ level ] });
+    }).then(config => {
+      console.log('Sending config data to dispatcher: %O', config);
+
+      AppDispatcher.dispatch({
+        type: ActionTypes.SET_STATE,
+        config: config.data
+      });
+
+      return config.data;
+    });
   }
 };
 
