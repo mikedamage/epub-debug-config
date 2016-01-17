@@ -22,10 +22,11 @@ class ComponentList extends React.Component {
 
       console.debug(config);
 
-      _.forEach(config.data.components, comp => {
-        toggles[comp] = _.includes(config.data.active, comp);
+      _.forEach(config.components, comp => {
+        toggles[comp] = _.includes(config.active, comp);
       });
 
+      console.debug('Set state: %O', toggles);
       this.setState({ components: toggles });
     };
 
