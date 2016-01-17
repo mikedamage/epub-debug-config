@@ -23,7 +23,9 @@ class ComponentList extends React.Component {
       console.debug(config);
 
       _.forEach(config.components, comp => {
-        toggles[comp] = _.includes(config.active, comp);
+        let active    = _.includes(config.active, comp);
+        toggles[comp] = active;
+        console.debug('Component: %s: %s', comp, active);
       });
 
       console.debug('Set state: %O', toggles);
@@ -31,7 +33,7 @@ class ComponentList extends React.Component {
     };
 
     changeCallback();
-    AppStore.addChangeListener(changeCallback);
+    AppStore.addChangeListener(changeCallback.bind(this));
   }
 
   handleChange(evt) {

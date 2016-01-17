@@ -28,7 +28,7 @@ const AppStore = _.assign({}, EventEmitter.prototype, {
     switch (action.type) {
       case ActionTypes.SET_STATE:
         console.debug('setting store state: %O', action.config);
-        _config = action.config;
+        _config = _.has(action.config, 'data') ? action.config.data : action.config;
         AppStore.emitChange();
         break;
     }
