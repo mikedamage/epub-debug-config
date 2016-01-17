@@ -8,9 +8,9 @@ const saveConfig = config => window.window.localStorage[storageKey] = JSON.strin
 const actions    = {
   getLoggerConfig() {
     try {
-      return JSON.parse(window.window.localStorage[storageKey]);
+      return getConfig();
     } catch (err) {
-      return null;
+      return { status: 'error', message: 'error getting config', data: err };
     }
   },
 

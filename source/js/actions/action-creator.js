@@ -5,10 +5,10 @@ import {ActionTypes} from '../lib/constants';
 const ActionCreator = {
   getLoggerConfig() {
     return util.getCurrentTab().then(tab => {
-      console.log('Current tab: %O', tab);
+      console.debug('Current tab: %O', tab);
       return util.sendMessage(tab.id, { action: 'getLoggerConfig' });
     }).then(config => {
-      console.debug('Send config data to dispatcher: %O', config);
+      console.log('Send config data to dispatcher: %O', config);
 
       AppDispatcher.dispatch({
         type: ActionTypes.SET_STATE,
@@ -21,10 +21,10 @@ const ActionCreator = {
 
   setLoggerConfig(config) {
     return util.getCurrentTab().then(tab => {
-      console.log('Current tab: %O', tab);
+      console.debug('Current tab: %O', tab);
       return util.sendMessage(tab.id, { action: 'setLoggerConfig', args: [ config ] });
     }).then(config => {
-      console.debug('Send config data to dispatcher: %O', config);
+      console.log('Send config data to dispatcher: %O', config);
 
       AppDispatcher.dispatch({
         type: ActionTypes.SET_STATE,
@@ -36,12 +36,12 @@ const ActionCreator = {
   },
 
   toggleComponent(component, active) {
-    console.debug('Toggle component: %s %s', component, active);
+    console.log('Toggle component: %s %s', component, active);
 
     return util.getCurrentTab().then(tab => {
       return util.sendMessage(tab.id, { action: 'setComponentState', args: [ component, active ] });
     }).then(config => {
-      console.debug('Send config data to dispatcher: %O', config);
+      console.log('Send config data to dispatcher: %O', config);
 
       AppDispatcher.dispatch({
         type: ActionTypes.SET_STATE,

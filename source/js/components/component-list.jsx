@@ -15,13 +15,15 @@ class ComponentList extends React.Component {
 
   componentDidMount() {
     let changeCallback = () => {
-      console.debug('Component list: change callback');
+      console.log('Component list: change callback');
 
       let config = AppStore.getConfig();
       let toggles = {};
 
-      _.forEach(config.components, comp => {
-        toggles[comp] = _.includes(config.active, comp);
+      console.debug(config);
+
+      _.forEach(config.data.components, comp => {
+        toggles[comp] = _.includes(config.data.active, comp);
       });
 
       this.setState({ components: toggles });
@@ -32,7 +34,7 @@ class ComponentList extends React.Component {
   }
 
   handleChange(evt) {
-    console.debug('Component toggled: %O', evt.target);
+    console.log('Component toggled: %O', evt.target);
     ActionCreator.toggleComponent(evt.target.name, evt.target.checked);
   }
 
