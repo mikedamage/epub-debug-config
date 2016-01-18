@@ -13,7 +13,9 @@ class Tools extends React.Component {
   render() {
     return (
       <div className="tools">
-        <button className="refresh" type="button" onClick={this.handleRefresh}>Refresh</button>
+        <button className="icon refresh" type="button" onClick={this.handleRefresh}>
+          <span className="button-inner"></span>
+        </button>
       </div>
     );
   }

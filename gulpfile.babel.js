@@ -78,8 +78,23 @@ gulp.task('zip', () => {
     .pipe(gulp.dest('dist'));
 });
 
+gulp.task('fonts', [ 'fonts:fontawesome' ]);
+
+gulp.task('fonts:fontawesome', () => {
+  let fontGlob = path.join(__dirname, 'node_modules', 'font-awesome', 'fonts', '*');
+
+  return gulp.src(fontGlob)
+    .pipe($.size({ title: 'Font Awesome Assets' }))
+    .pipe(gulp.dest('build/fonts'));
+});
+
 gulp.task('default', cb => {
-  runSequence('clean', 'copy', [ 'scripts', 'styles' ], cb);
+  runSequence(
+    'clean',
+    [ 'copy', 'fonts' ],
+    [ 'scripts', 'styles' ],
+    cb
+  );
 });
 
 gulp.task('watch', () => {

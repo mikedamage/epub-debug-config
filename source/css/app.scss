@@ -1,6 +1,16 @@
 @import 'normalize.scss/normalize';
 @import 'partials/toggles';
+@import 'font-awesome/scss/font-awesome';
 
 body {
   min-width: 350px;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.icon {
+  @extend .fa;
+
+  &.refresh .button-inner {
+    @extend .fa-refresh;
+  }
 }
