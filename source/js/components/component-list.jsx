@@ -2,6 +2,7 @@ import _             from 'lodash';
 import React         from 'react';
 import ActionCreator from '../actions/action-creator';
 import AppStore      from '../stores/app-store';
+import Toggle        from 'material-ui/lib/toggle';
 
 class ComponentList extends React.Component {
   constructor(props) {
@@ -35,9 +36,9 @@ class ComponentList extends React.Component {
     AppStore.addChangeListener(changeCallback.bind(this));
   }
 
-  handleChange(evt) {
+  handleChange(evt, toggled) {
     console.log('Component toggled: %O', evt.target);
-    ActionCreator.toggleComponent(evt.target.name, evt.target.checked);
+    ActionCreator.toggleComponent(evt.target.name, toggled);
   }
 
   render() {
@@ -45,12 +46,7 @@ class ComponentList extends React.Component {
       return (
         <div className="component-list__component" key={key}>
           <h2 className="section-title">Components</h2>
-          <label htmlFor={`component-${key}`}>{key}</label>
-          <Toggle
-            id={`component-${key}`}
-            defaultChecked={comp}
-            onChange={this.handleChange}
-            name={key} />
+          <Toggle name={key} defaultToggled={comp} value="on" label={key} onToggle={this.handleChange} />
         </div>
       );
     });
