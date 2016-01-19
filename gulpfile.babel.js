@@ -37,8 +37,8 @@ const bundleJS = input => {
     extensions: [ '.js', '.jsx' ],
     debug: !production,
     paths: [
-      './node_modules',
-      './source/js'
+      path.join(__dirname, 'node_modules'),
+      path.join(__dirname, 'source', 'js')
     ]
   }).transform(babelify)
     .bundle()

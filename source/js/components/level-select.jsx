@@ -4,35 +4,27 @@ import ActionCreator from '../actions/action-creator';
 import DropDownMenu  from 'material-ui/lib/DropDownMenu';
 import MenuItem      from 'material-ui/lib/menus/menu-item';
 
-const levelOpts = {
-  'debug' : 'Debug',
-  'info'  : 'Info',
-  'warn'  : 'Warn',
-  'error' : 'Error'
-};
-
 class LevelSelect extends React.Component {
   constructor(props) {
     super(props);
     this.state = { level: 'info' };
   }
 
-  handleChange(evt) {
-    let level = evt.target.value;
-    ActionCreator.setSeverityLevel(level);
-    this.state.level = level;
+  handleChange(evt, idx, value) {
+    console.log('Severity level set to %s', value);
+    ActionCreator.setSeverityLevel(value);
+    this.setState({ level: value });
   }
 
   render() {
-    opts = _.map(levelOpts, (label, val) => {
-      return <MenuItem value={val} primaryText={label} />;
-    });
-
     return (
       <div className="level-select">
         <label htmlFor="level-select-input" className="level-select__label">Severity Level</label>
-        <DropDownMenu value={this.state.level} onChange={this.handleChange}>
-          {opts}
+        <DropDownMenu value={this.state.level} onChange={this.handleChange.bind(this)}>
+          <MenuItem value="debug" primaryText="Debug" />
+          <MenuItem value="info" primaryText="Info" />
+          <MenuItem value="warn" primaryText="Warn" />
+          <MenuItem value="error" primaryText="Error" />
         </DropDownMenu>
       </div>
     );
