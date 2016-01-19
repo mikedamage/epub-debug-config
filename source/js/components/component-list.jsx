@@ -1,6 +1,5 @@
 import _             from 'lodash';
 import React         from 'react';
-import Toggle        from 'react-toggle';
 import ActionCreator from '../actions/action-creator';
 import AppStore      from '../stores/app-store';
 
