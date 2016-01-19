@@ -5,6 +5,7 @@ import LevelSelect   from './level-select';
 import Tools         from './tools';
 import ActionCreator from '../actions/action-creator';
 import AppStore      from '../stores/app-store';
+import AppBar        from 'material-ui/lib/app-bar';
 
 class Application extends React.Component {
   constructor(props) {
@@ -28,8 +29,13 @@ class Application extends React.Component {
       );
     }
 
+    let styles = { fontSize: '18px' };
+
     return (
       <div className="application">
+        <AppBar
+          title="ePublishing Debug Config"
+          titleStyle={styles} />
         <Tools />
         <LevelSelect />
         <ComponentList />
