@@ -30,9 +30,9 @@ class Application extends React.Component {
 
     return (
       <div className="application">
+        <Tools />
         <LevelSelect />
         <ComponentList />
-        <Tools />
       </div>
     );
   }
