@@ -1,6 +1,5 @@
 import includes from 'lodash.includes';
 
-
 const storageKey = 'epublishing.logger';
 const getConfig  = () => JSON.parse(window.window.localStorage[storageKey]);
 const saveConfig = config => window.window.localStorage[storageKey] = JSON.stringify(config);
@@ -62,6 +61,12 @@ const actions    = {
     saveConfig(config);
 
     return { status: 'success', data: config };
+  },
+
+  reloadPage() {
+    console.log('Reloading page');
+    window.window.location.reload();
+    return { status: 'success' };
   },
 
   setLoggerConfig(config) {

@@ -67,6 +67,14 @@ const ActionCreator = {
 
       return config.data;
     });
+  },
+
+  reloadPage() {
+    console.log('Reloading content page');
+
+    return util.getCurrentTab().then(tab => {
+      return util.sendMessage(tab.id, { action: 'reloadPage' });
+    });
   }
 };
 
