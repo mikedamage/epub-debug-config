@@ -38,8 +38,4 @@ class Application extends React.Component {
   }
 }
 
-Application.propTypes = {
-  loggerStatus: React.PropTypes.object
-};
-
 export default Application;
