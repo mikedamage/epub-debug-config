@@ -3,6 +3,8 @@ import React         from 'react';
 import ActionCreator from '../actions/action-creator';
 import AppStore      from '../stores/app-store';
 import Toggle        from 'material-ui/lib/toggle';
+import List          from 'material-ui/lib/lists/list';
+import ListItem      from 'material-ui/lib/lists/list-item';
 
 class ComponentList extends React.Component {
   constructor(props) {
@@ -43,17 +45,21 @@ class ComponentList extends React.Component {
 
   render() {
     let components = _.map(this.state.components, (comp, key) => {
+      let toggle = <Toggle
+                    defaultToggled={comp}
+                    name={key}
+                    onToggle={this.handleChange.bind(this)} />;
       return (
-        <div className="component-list__component" key={key}>
-          <h2 className="section-title">Components</h2>
-          <Toggle name={key} defaultToggled={comp} value="on" label={key} onToggle={this.handleChange} />
-        </div>
+        <ListItem key={key} primaryText={key} rightToggle={toggle} />
       );
     });
 
     return (
       <div className="component-list">
-        {components}
+        <h2>Components</h2>
+        <List>
+          {components}
+        </List>
       </div>
     );
   }
