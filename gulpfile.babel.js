@@ -78,13 +78,13 @@ gulp.task('zip', () => {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('fonts', [ 'fonts:fontawesome' ]);
+gulp.task('fonts', [ 'fonts:materialIcons' ]);
 
-gulp.task('fonts:fontawesome', () => {
-  let fontGlob = path.join(__dirname, 'node_modules', 'font-awesome', 'fonts', '*');
+gulp.task('fonts:materialIcons', () => {
+  let fontGlob = path.join(__dirname, 'node_modules', 'material-design-iconic-font', 'dist', 'fonts', '*');
 
   return gulp.src(fontGlob)
-    .pipe($.size({ title: 'Font Awesome Assets' }))
+    .pipe($.size({ title: 'Material Design Iconic Font' }))
     .pipe(gulp.dest('build/fonts'));
 });
 

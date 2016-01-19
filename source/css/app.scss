@@ -1,16 +1,11 @@
+$zmdi-font-path: '../fonts';
+$zmdi-icon-prefix: 'icon';
+
 @import 'normalize.scss/normalize';
 @import 'partials/toggles';
-@import 'font-awesome/scss/font-awesome';
+@import 'material-design-iconic-font/scss/material-design-iconic-font';
 
 body {
   min-width: 350px;
   font-family: sans-serif;
-}
-
-.icon {
-  @extend .fa;
-
-  &.refresh .button-inner {
-    @extend .fa-refresh;
-  }
 }
