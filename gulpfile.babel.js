@@ -35,7 +35,11 @@ const bundleJS = input => {
   return browserify({
     entries: input,
     extensions: [ '.js', '.jsx' ],
-    debug: !production
+    debug: !production,
+    paths: [
+      './node_modules',
+      './source/js'
+    ]
   }).transform(babelify)
     .bundle()
     .pipe(source(output))

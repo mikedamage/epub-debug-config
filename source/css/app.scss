@@ -5,7 +5,16 @@ $zmdi-icon-prefix: 'icon';
 @import 'partials/toggles';
 @import 'material-design-iconic-font/scss/material-design-iconic-font';
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   min-width: 350px;
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
 }

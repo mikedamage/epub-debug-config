@@ -10,10 +10,12 @@
     "keymirror": "^0.1.1",
     "lodash": "^3.10.1",
     "material-design-iconic-font": "^2.2.0",
+    "material-ui": "^0.14.2",
     "normalize.scss": "^0.1.0",
     "q": "^1.4.1",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
+    "react-tap-event-plugin": "^0.2.1",
     "react-toggle": "^2.0.1"
   },
   "devDependencies": {
