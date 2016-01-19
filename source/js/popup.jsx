@@ -10,4 +10,6 @@ util.executeScript('js/content.js').then(results => {
   return results;
 }).then(results => {
   ReactDOM.render(<Application />, document.getElementById('app'));
+}, function(err) {
+  console.error(err);
 });
