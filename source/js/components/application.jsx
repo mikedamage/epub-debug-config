@@ -29,13 +29,15 @@ class Application extends React.Component {
       );
     }
 
-    let styles = { fontSize: '18px' };
+    let titleStyles = { fontSize: '18px' };
+    let barStyles   = { backgroundColor: '#3b5e8a' };
 
     return (
       <div className="application">
         <AppBar
           title="ePublishing Debug Config"
-          titleStyle={styles} />
+          style={barStyles}
+          titleStyle={titleStyles} />
         <Tools />
         <LevelSelect />
         <ComponentList />
