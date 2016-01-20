@@ -19,7 +19,8 @@ class LevelSelect extends React.Component {
   render() {
     return (
       <div className="level-select">
-        <label htmlFor="level-select-input" className="level-select__label">Severity Level</label>
+        <h2>Filtering</h2>
+        <span className="level-select__label">Minimum Message Severity</span>
         <DropDownMenu value={this.state.level} onChange={this.handleChange.bind(this)}>
           <MenuItem value="debug" primaryText="Debug" />
           <MenuItem value="info" primaryText="Info" />

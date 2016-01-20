@@ -6,6 +6,7 @@ import ActionCreator from '../actions/action-creator';
 import AppStore      from '../stores/app-store';
 import AppBar        from 'material-ui/lib/app-bar';
 import IconButton    from 'material-ui/lib/icon-button';
+import Divider       from 'material-ui/lib/divider';
 
 class Application extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class Application extends React.Component {
     }
 
     let titleStyles = { fontSize: '18px' };
-    let barStyles   = { backgroundColor: '#3b5e8a' };
+    let barStyles   = { backgroundColor: '#1eb57d' };
     let refresh     = <IconButton iconClassName="icon icon-refresh" iconStyle={{fontSize: '18px'}} />;
     let clickRefresh = evt => {
       ActionCreator.getLoggerConfig();
@@ -44,8 +45,15 @@ class Application extends React.Component {
           titleStyle={titleStyles}
           iconElementRight={refresh}
           onClick={clickRefresh} />
-        <LevelSelect />
-        <ComponentList />
+        <div className="component">
+          <LevelSelect />
+        </div>
+        <div className="component">
+          <Divider />
+        </div>
+        <div className="component">
+          <ComponentList />
+        </div>
       </div>
     );
   }
