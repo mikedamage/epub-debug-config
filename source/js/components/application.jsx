@@ -1,12 +1,14 @@
-import _             from 'lodash';
-import React         from 'react';
-import ComponentList from './component-list';
-import LevelSelect   from './level-select';
-import ActionCreator from '../actions/action-creator';
-import AppStore      from '../stores/app-store';
-import AppBar        from 'material-ui/lib/app-bar';
-import IconButton    from 'material-ui/lib/icon-button';
-import Divider       from 'material-ui/lib/divider';
+import _              from 'lodash';
+import React          from 'react';
+import ComponentList  from './component-list';
+import LevelSelect    from './level-select';
+import ActionCreator  from '../actions/action-creator';
+import AppStore       from '../stores/app-store';
+import AppBar         from 'material-ui/lib/app-bar';
+import IconButton     from 'material-ui/lib/icon-button';
+import Divider        from 'material-ui/lib/divider';
+import ThemeManager   from 'material-ui/lib/styles/theme-manager';
+import Theme          from '../lib/theme';
 
 class Application extends React.Component {
   constructor(props) {
@@ -15,6 +17,12 @@ class Application extends React.Component {
 
   componentDidMount() {
     ActionCreator.getLoggerConfig();
+  }
+
+  getChildContext() {
+    return {
+      muiTheme: ThemeManager.getMuiTheme(Theme)
+    };
   }
 
   render() {
@@ -31,7 +39,6 @@ class Application extends React.Component {
     }
 
     let titleStyles = { fontSize: '18px' };
-    let barStyles   = { backgroundColor: '#1eb57d' };
     let refresh     = <IconButton iconClassName="icon icon-refresh" iconStyle={{fontSize: '18px'}} />;
     let clickRefresh = evt => {
       ActionCreator.getLoggerConfig();
@@ -41,7 +48,6 @@ class Application extends React.Component {
       <div className="application">
         <AppBar
           title="ePublishing Debug Config"
-          style={barStyles}
           titleStyle={titleStyles}
           iconElementRight={refresh}
           onClick={clickRefresh} />
@@ -58,5 +64,9 @@ class Application extends React.Component {
     );
   }
 }
+
+Application.childContextTypes = {
+  muiTheme: React.PropTypes.object
+};
 
 export default Application;

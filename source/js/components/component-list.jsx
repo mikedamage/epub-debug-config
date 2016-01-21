@@ -16,6 +16,8 @@ class ComponentList extends React.Component {
   }
 
   componentDidMount() {
+    console.debug(this.context.muiTheme);
+
     let changeCallback = () => {
       console.log('Component list: change callback');
 
