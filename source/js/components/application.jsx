@@ -8,6 +8,8 @@ import AppBar         from 'material-ui/lib/app-bar';
 import IconButton     from 'material-ui/lib/icon-button';
 import Divider        from 'material-ui/lib/divider';
 import ThemeManager   from 'material-ui/lib/styles/theme-manager';
+import IconMenu       from 'material-ui/lib/menus/icon-menu';
+import MenuItem       from 'material-ui/lib/menus/menu-item';
 import Theme          from '../lib/theme';
 
 class Application extends React.Component {
@@ -38,11 +40,11 @@ class Application extends React.Component {
       );
     }
 
-    let titleStyles = { fontSize: '18px' };
-    let refresh     = <IconButton iconClassName="icon icon-refresh" iconStyle={{fontSize: '18px'}} />;
+    let titleStyles  = { fontSize: '18px' };
+    let refresh      = <IconButton iconClassName="icon icon-refresh" iconStyle={{fontSize: '18px'}} />;
     let clickRefresh = evt => {
       ActionCreator.getLoggerConfig();
-    }
+    };
 
     return (
       <div className="application">
