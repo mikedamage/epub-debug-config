@@ -2,6 +2,7 @@ import _              from 'lodash';
 import React          from 'react';
 import ComponentList  from './component-list';
 import LevelSelect    from './level-select';
+import AjaxControl    from './ajax-control';
 import ActionCreator  from '../actions/action-creator';
 import AppStore       from '../stores/app-store';
 import AppBar         from 'material-ui/lib/app-bar';
@@ -61,6 +62,9 @@ class Application extends React.Component {
         </div>
         <div className="component">
           <ComponentList />
+        </div>
+        <div className="component">
+          <AjaxControl />
         </div>
       </div>
     );

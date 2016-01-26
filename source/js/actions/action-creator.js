@@ -69,6 +69,23 @@ const ActionCreator = {
     });
   },
 
+  setAjaxPushUrl(url) {
+    console.log('Setting AJAX push URL: %s', url);
+
+    return util.getCurrentTab().then(tab => {
+      return util.sendMessage(tab.id, { action: 'setAjaxPushUrl', args: [ url ] });
+    }).then(config => {
+      console.log('Sending config data to dispatcher: %O', config);
+
+      AppDispatcher.dispatch({
+        type: ActionTypes.SET_STATE,
+        config: config.data
+      });
+
+      return config.data;
+    });
+  },
+
   reloadPage() {
     console.log('Reloading content page');
 

@@ -63,6 +63,15 @@ const actions    = {
     return { status: 'success', data: config };
   },
 
+  setAjaxPushUrl(url) {
+    console.debug('Setting logger AJAX push URL to %s', url);
+    let config = getConfig();
+    config.push = url;
+    saveConfig(config);
+
+    return { status: 'success', data: config };
+  },
+
   reloadPage() {
     console.log('Reloading page');
     window.window.location.reload();
