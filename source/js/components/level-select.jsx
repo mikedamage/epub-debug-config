@@ -1,6 +1,7 @@
 import _             from 'lodash';
 import React         from 'react';
 import ActionCreator from '../actions/action-creator';
+import AppStore      from '../stores/app-store';
 import DropDownMenu  from 'material-ui/lib/DropDownMenu';
 import MenuItem      from 'material-ui/lib/menus/menu-item';
 
@@ -8,6 +9,13 @@ class LevelSelect extends React.Component {
   constructor(props) {
     super(props);
     this.state = { level: 'info' };
+  }
+
+  componentDidMount() {
+    AppStore.addChangeListener(() => {
+      let config = AppStore.getConfig();
+      this.setState({ level: config.level });
+    });
   }
 
   handleChange(evt, idx, value) {
