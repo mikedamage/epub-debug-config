@@ -9,9 +9,10 @@ import buffer      from 'vinyl-buffer';
 import del         from 'del';
 import pkg         from './package';
 
-const $          = plugins();
-const production = !!$.util.env.production;
-const copyFiles  = [
+const $            = plugins();
+const production   = !!$.util.env.production;
+const versionFiles = [ './package.json', './source/manifest.json' ];
+const copyFiles    = [
   'source/**/*',
   '!source/js/**/*.{js,jsx}',
   '!source/css/**/*.scss'
@@ -19,7 +20,7 @@ const copyFiles  = [
 
 const bumpTask = type => {
   return () => {
-    return gulp.src('package.json')
+    return gulp.src(versionFiles)
       .pipe($.bump({ type: type }))
       .pipe(gulp.dest('./'));
   };
