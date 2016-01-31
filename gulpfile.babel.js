@@ -1,3 +1,4 @@
+import fs          from 'fs';
 import gulp        from 'gulp';
 import plugins     from 'gulp-load-plugins';
 import runSequence from 'run-sequence';
@@ -83,8 +84,17 @@ gulp.task('copy', () => gulp.src(copyFiles).pipe(gulp.dest('build')));
 gulp.task('zip', () => {
   return gulp.src('build/**/*')
     .pipe($.rename(file => file.dirname = `epub-debug-logger/${file.dirname}`))
-    .pipe($.zip(`epub-debug-logger-${pkg.version}.zip`))
+    .pipe($.zip(`epub-debug-logger_${pkg.version}.zip`))
     .pipe($.size({ title: 'Zip Archive' }))
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('crx', () => {
+  return gulp.src('build')
+    .pipe($.crxPack({
+      privateKey: fs.readFileSync('./build.pem', 'utf8'),
+      filename: `epub-debug-config_v${pkg.version}.crx`
+    }))
     .pipe(gulp.dest('dist'));
 });
 
