@@ -4,6 +4,8 @@
   "version": "0.1.0",
   "author": "Mike Green <mgreen@epublishing.com>",
   "description": "Control panel for ePublishing's front-end debug logger",
+  "codebase": "https://s3.amazonaws.com/mikegreen/epub-debug-config/epub-debug-config.crx",
+  "update_url": "https://s3.amazonaws.com/mikegreen/epub-debug-config/update.xml",
   "icons": {
     "16": "images/debug-off-16.png",
     "19": "images/debug-off-19.png",

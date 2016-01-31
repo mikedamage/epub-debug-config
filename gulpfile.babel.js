@@ -9,6 +9,7 @@ import source      from 'vinyl-source-stream';
 import buffer      from 'vinyl-buffer';
 import del         from 'del';
 import pkg         from './package';
+import manifest    from './source/manifest';
 
 const $            = plugins();
 const production   = !!$.util.env.production;
@@ -93,7 +94,9 @@ gulp.task('crx', () => {
   return gulp.src('build')
     .pipe($.crxPack({
       privateKey: fs.readFileSync('./build.pem', 'utf8'),
-      filename: `epub-debug-config_v${pkg.version}.crx`
+      filename: `epub-debug-config.crx`,
+      codebase: manifest.codebase,
+      updateXmlFilename: 'update.xml'
     }))
     .pipe(gulp.dest('dist'));
 });
