@@ -101,6 +101,19 @@ gulp.task('crx', () => {
     .pipe(gulp.dest('dist'));
 });
 
+gulp.task('release', [ 'crx' ], () => {
+  let s3 = $.s3Upload({
+    accessKeyId: 'AKIAJ3VW4PJMT6HI3Z3Q',
+    secretAccessKey: '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'
+  });
+
+  return gulp.src('dist/*')
+    .pipe(s3({
+      Bucket: 'mikegreen/epub-debug-config',
+      ACL: 'public-read'
+    }))
+});
+
 gulp.task('fonts', [ 'fonts:materialIcons' ]);
 
 gulp.task('fonts:materialIcons', () => {
