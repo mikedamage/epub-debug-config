@@ -30,6 +30,11 @@ gulp.task('bump:patch', bumpTask('patch'));
 gulp.task('bump:minor', bumpTask('minor'));
 gulp.task('bump:major', bumpTask('major'));
 
+gulp.task('version', cb => {
+  $.util.log('%s %s', $.util.colors.bold.blue('Current Version:'), $.util.colors.bold.white(pkg.version));
+  cb();
+});
+
 const bundleJS = input => {
   let output = path.basename(input);
 
