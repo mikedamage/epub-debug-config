@@ -83,10 +83,12 @@ gulp.task('styles', () => {
 gulp.task('copy', () => gulp.src(copyFiles).pipe(gulp.dest('build')));
 
 gulp.task('zip', () => {
+  let zipFile = `epub-debug-logger_${pkg.version}.zip`;
+
   return gulp.src('build/**/*')
     .pipe($.rename(file => file.dirname = `epub-debug-logger/${file.dirname}`))
-    .pipe($.zip(`epub-debug-logger_${pkg.version}.zip`))
-    .pipe($.size({ title: 'Zip Archive' }))
+    .pipe($.zip(zipFile))
+    .pipe($.size({ title: zipFile }))
     .pipe(gulp.dest('dist'));
 });
 
