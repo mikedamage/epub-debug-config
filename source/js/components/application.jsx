@@ -19,7 +19,18 @@ class Application extends React.Component {
   }
 
   componentDidMount() {
-    ActionCreator.getLoggerConfig();
+    ActionCreator.getLoggerConfig().then(cfg => {
+      let changeHandler = () => {
+        let config    = AppStore.getConfig();
+        let iconState = !!config.active.length ? 'on' : 'off';
+
+        console.log('setting icon, on: %s', !!config.active.length);
+        chrome.browserAction.setIcon({ path: `images/debug-${iconState}-19.png` })
+      }
+
+      changeHandler();
+      AppStore.addChangeListener(changeHandler);
+    });
   }
 
   getChildContext() {
