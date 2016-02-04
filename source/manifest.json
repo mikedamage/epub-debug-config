@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "ePublishing Debug Config",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Mike Green <mgreen@epublishing.com>",
   "description": "Control panel for ePublishing's front-end debug logger",
   "icons": {
