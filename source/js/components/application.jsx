@@ -53,9 +53,13 @@ class Application extends React.Component {
     }
 
     let titleStyles  = { fontSize: '18px' };
-    let refresh      = <IconButton iconClassName="icon icon-refresh" iconStyle={{fontSize: '18px'}} />;
+    let refresh      = <IconButton  iconClassName="icon icon-refresh"
+                                    iconStyle={{fontSize: '18px'}}
+                                    tooltip="Reload Page"
+                                    tooltipPosition="bottom-left" />;
     let clickRefresh = evt => {
-      ActionCreator.getLoggerConfig();
+      ActionCreator.reloadPage();
+      window.close();
     };
 
     return (
