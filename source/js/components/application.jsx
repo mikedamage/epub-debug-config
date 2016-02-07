@@ -3,6 +3,7 @@ import React          from 'react';
 import ComponentList  from './component-list';
 import LevelSelect    from './level-select';
 import AjaxControl    from './ajax-control';
+import Wrapper        from './wrapper';
 import ActionCreator  from '../actions/action-creator';
 import AppStore       from '../stores/app-store';
 import AppBar         from 'material-ui/lib/app-bar';
@@ -69,18 +70,18 @@ class Application extends React.Component {
           titleStyle={titleStyles}
           iconElementRight={refresh}
           onClick={clickRefresh} />
-        <div className="component">
+        <Wrapper>
           <LevelSelect />
-        </div>
-        <div className="component">
+        </Wrapper>
+        <Wrapper>
           <Divider />
-        </div>
-        <div className="component">
+        </Wrapper>
+        <Wrapper>
           <ComponentList />
-        </div>
-        <div className="component">
+        </Wrapper>
+        <Wrapper>
           <AjaxControl />
-        </div>
+        </Wrapper>
       </div>
     );
   }
