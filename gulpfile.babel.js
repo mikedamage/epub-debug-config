@@ -126,11 +126,17 @@ gulp.task('fonts:materialIcons', () => {
     .pipe(gulp.dest('build/fonts'));
 });
 
+gulp.task('buildsize', () => {
+  return gulp.src('./build/**/*')
+    .pipe($.size({ title: 'Build Folder' }));
+});
+
 gulp.task('default', cb => {
   runSequence(
     'clean',
     [ 'copy', 'fonts' ],
     [ 'scripts', 'styles' ],
+    'buildsize',
     cb
   );
 });
