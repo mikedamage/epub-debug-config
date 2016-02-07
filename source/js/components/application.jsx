@@ -80,6 +80,9 @@ class Application extends React.Component {
           <ComponentList />
         </Wrapper>
         <Wrapper>
+          <Divider />
+        </Wrapper>
+        <Wrapper>
           <AjaxControl />
         </Wrapper>
       </div>
