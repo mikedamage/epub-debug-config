@@ -20,17 +20,27 @@ const copyFiles    = [
   '!source/css/**/*.scss'
 ];
 
-const bumpTask = type => {
+const bumpTask = (file, type) => {
+  let dest = file === 'package.json' ? './' : './source';
+
   return () => {
-    return gulp.src(versionFiles)
+    return gulp.src(file)
       .pipe($.bump({ type: type }))
-      .pipe(gulp.dest('./'));
+      .pipe(gulp.dest(dest));
   };
 };
 
-gulp.task('bump:patch', bumpTask('patch'));
-gulp.task('bump:minor', bumpTask('minor'));
-gulp.task('bump:major', bumpTask('major'));
+gulp.task('bump:patch:package', bumpTask('package.json', 'patch'));
+gulp.task('bump:patch:manifest', bumpTask('source/manifest.json', 'patch'));
+gulp.task('bump:patch', [ 'bump:patch:package', 'bump:patch:manifest' ]);
+
+gulp.task('bump:minor:package', bumpTask('package.json', 'minor'));
+gulp.task('bump:minor:manifest', bumpTask('source/manifest.json', 'minor'))
+gulp.task('bump:minor', [ 'bump:minor:package', 'bump:minor:manifest' ]);
+
+gulp.task('bump:major:package', bumpTask('package.json', 'major'));
+gulp.task('bump:major:manifest', bumpTask('source/manifest.json', 'major'));
+gulp.task('bump:major', [ 'bump:major:package', 'bump:major:manifest' ]);
 
 gulp.task('version', cb => {
   $.util.log('%s %s', $.util.colors.bold.blue('Current Version:'), $.util.colors.bold.white(pkg.version));
