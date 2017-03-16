@@ -56,5 +56,6 @@
     "plugins": [
       "transform-decorators"
     ]
-  }
+  },
+  "license": "MIT"
 }
