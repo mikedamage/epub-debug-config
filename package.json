@@ -48,24 +48,5 @@
   "scripts": {
     "build": "gulp"
   },
-  "babel": {
-    "presets": [
-      "babili",
-      "react",
-      [
-        "env",
-        {
-          "targets": {
-            "browsers": [
-              "Chrome >= 40"
-            ]
-          }
-        }
-      ]
-    ],
-    "plugins": [
-      "transform-decorators"
-    ]
-  },
   "license": "MIT"
 }

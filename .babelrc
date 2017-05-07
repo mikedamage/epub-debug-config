@@ -7,5 +7,6 @@
         "browsers": [ "chrome >= 40" ]
       }
     }]
-  ]
+  ],
+  "plugins": [ "transform-decorators" ]
 }
