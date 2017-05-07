@@ -1,3 +1,5 @@
+/* global chrome */
+
 import Q from 'q';
 
 export const executeScript = filename => {

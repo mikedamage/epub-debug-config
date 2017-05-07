@@ -1,0 +1,11 @@
+{
+  "presets": [
+    "babili",
+    "react",
+    ["env", {
+      "targets": {
+        "browsers": [ "chrome >= 40" ]
+      }
+    }]
+  ]
+}
